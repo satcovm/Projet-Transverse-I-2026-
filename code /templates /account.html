@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <div class="logo">Sweet Cake Studio</div>
+      <nav>
+        <a href="{{ url_for('home1') }}">Accueil</a>
+        <a href="{{ url_for('catalogue') }}">Produits</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero small-hero">
+      <div class="container">
+        <h1>Your Account</h1>
+        <p>Enter your username to access your profile and your orders.</p>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <div class="container">
+        <div class="form-card">
+          {% if message %}
+            <p class="message">{{ message }}</p>
+          {% endif %}
+
+          <form method="POST" action="{{ url_for('account') }}">
+            <input type="hidden" name="next" value="{{ next_page }}">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+
+            <button type="submit" class="card-button">Continue</button>
+          </form>
+
+          <p class="helper-text">
+            New here?
+            <a href="{{ url_for('new_account') }}">Create a new account</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
